@@ -7,13 +7,13 @@ import './FeatureNav.css';
 const FeatureNav = (props) => {
   return (
     <div className="Nav container">
-      {/* <Navbar fluid collapseOnSelect> */}
+      <Navbar fluid collapseOnSelect>
         <Navbar.Header>
-          {/* <Navbar.Brand> */}
+          <Navbar.Brand>
             <Link to="/">fatfax</Link>
-          {/* </Navbar.Brand> */}
+          </Navbar.Brand>
         </Navbar.Header>
-      {/* </Navbar> */}
+      </Navbar>
     </div>
   );
 };
