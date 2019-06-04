@@ -1,7 +1,7 @@
 import React from 'react';
 // import {} from 'prop-types';
 import { Link } from 'react-router-dom';
-import  Navbar from 'react-bootstrap/Navbar';
+import  { Navbar } from 'react-bootstrap';
 import './FeatureNav.css';
 
 const FeatureNav = (props) => {
