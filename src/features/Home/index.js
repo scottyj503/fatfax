@@ -12,6 +12,6 @@ class Home extends PureComponent {
       </div>
     );
   }
-};
+}
 
 export default Home;

@@ -4,14 +4,12 @@ import { withRouter } from 'react-router-dom';
 import FeatureNav from './features/FeatureNav';
 import Features from './Features';
 
-const Layout = (props) => {
-  return (
-    <div>
-      <FeatureNav />
-      <Features/>
-    </div>
-  );
-}
+const Layout = props => (
+  <div>
+    <FeatureNav />
+    <Features />
+  </div>
+);
 
 export default withRouter(Layout);
 // export default Layout;
