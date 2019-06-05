@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 // import {}from 'prop-types';
-import FeatureNav from './features/nav/FeatureNav';
-// import Features from './Features';
+import { withRouter } from 'react-router-dom';
+import FeatureNav from './features/FeatureNav';
+import Features from './Features';
 
 const Layout = (props) => {
   return (
-    <FeatureNav/>
+    <div>
+      <FeatureNav />
+      <Features/>
+    </div>
   );
-};
+}
 
-export default Layout;
+export default withRouter(Layout);
+// export default Layout;
