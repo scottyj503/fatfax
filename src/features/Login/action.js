@@ -1,10 +1,10 @@
 import { USER_AUTHENTICATING } from './types';
 
-function login(payload) {
+function userLogin(payload) {
   return ({
     type: USER_AUTHENTICATING,
     payload,
   });
 }
 
-export default login;
+export default userLogin;

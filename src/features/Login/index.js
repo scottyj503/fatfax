@@ -1,66 +1,30 @@
-import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import {
-  Button, FormGroup, FormControl, ControlLabel,
-} from 'react-bootstrap';
-import './Login.css';
+  userIsAuthenticated,
+  userIsAuthenticating,
+  userAuthenticationError,
+} from './selector';
+import userLogin from './action';
+import Login from './login';
 
-class Login extends PureComponent {
-  constructor(props) {
-    super(props);
+// export default Login;
 
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
+export default connect(store => ({
+  error: userAuthenticationError(store),
+  authenticated: userIsAuthenticated(store),
+  authenticating: userIsAuthenticating(store),
+}), {
+  login: userLogin,
+})(Login);
 
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
+// const mapStateToProps = (store) => ({
+//   error: userAuthenticationError(store),
+//   authenticated: userIsAuthenticated(store),
+//   authenticating: userIsAuthenticating(store),
+// });
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
-  }
+// const mapDispatchToProps = (dispatch) => ({
+//   login: userLogin,
+// });
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Login
-          </Button>
-        </form>
-      </div>
-    );
-  }
-}
-
-export default Login;
+// export default connect(mapStateToProps, mapDispatchToProps)(Login);
