@@ -25,7 +25,8 @@ module.exports = {
    */
   output: {
     filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -56,7 +57,6 @@ module.exports = {
       hash: true,
       template: './index.html',
       filename: 'index.html',
-      title: 'Production'
     }),
   ],
 }

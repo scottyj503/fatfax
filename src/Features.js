@@ -5,9 +5,6 @@ import Login from './features/Login';
 import NotFound from './features/NotFound';
 import Signup from './features/Signup';
 
-const test = () => <Login />;
-const test1 = () => withRouter(<Login />);
-
 const Features = (props) => (
   <main>
     <Switch>
