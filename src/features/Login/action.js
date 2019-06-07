@@ -1,9 +1,9 @@
 import { USER_AUTHENTICATING } from './types';
 
-function userLogin(payload) {
+function userLogin(data) {
   return ({
     type: USER_AUTHENTICATING,
-    payload,
+    data,
   });
 }
 

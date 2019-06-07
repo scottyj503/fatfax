@@ -54,12 +54,12 @@ class Login extends PureComponent {
       password,
     };
 
-    debugger;
     login(data);
   }
 
   render() {
-    const { authenticated } = this.props;
+    const { authenticated, error } = this.props;
+    if (error) debugger;
     if (authenticated) debugger;
     return (
       <div className="Login">

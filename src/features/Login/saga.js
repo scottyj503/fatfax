@@ -8,13 +8,16 @@ import {
   USER_AUTHENTICATING_ERROR,
 } from './types';
 
+const authenticate = async (email, password) => (
+  await Auth.signIn(email, password)
+);
+
+
 function* loginWorker(payload) {
   try {
-    const {email, password } = payload;
-    debugger;
+    const {email, password } = payload.data;
 
-    yield call(Auth.signIn, email, password);
-    debugger;
+    yield call(authenticate, email, password);
 
     yield put({
       type: USER_AUTHENTICATED,

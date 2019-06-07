@@ -7,8 +7,6 @@ import {
 import userLogin from './action';
 import Login from './login';
 
-// export default Login;
-
 export default connect(store => ({
   error: userAuthenticationError(store),
   authenticated: userIsAuthenticated(store),
@@ -16,15 +14,3 @@ export default connect(store => ({
 }), {
   login: userLogin,
 })(Login);
-
-// const mapStateToProps = (store) => ({
-//   error: userAuthenticationError(store),
-//   authenticated: userIsAuthenticated(store),
-//   authenticating: userIsAuthenticating(store),
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   login: userLogin,
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
