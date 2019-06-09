@@ -5,7 +5,7 @@ import Login from './features/Login';
 import NotFound from './features/NotFound';
 import Signup from './features/Signup';
 
-const Features = (props) => (
+const Features = props => (
   <main>
     <Switch>
       <Route exact path="/" component={Home} />

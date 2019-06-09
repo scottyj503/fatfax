@@ -6,8 +6,8 @@ import Features from './Features';
 
 const Layout = props => (
   <div>
-    <FeatureNav />
-    <Features />
+    <FeatureNav {...props} />
+    <Features {...props} />
   </div>
 );
 

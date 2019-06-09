@@ -3,6 +3,7 @@ import { Auth } from 'aws-amplify';
 import {
   Button, FormGroup, FormControl, ControlLabel,
 } from 'react-bootstrap';
+import LoaderButton from '../LoaderButton';
 import './login.css';
 
 class Login extends PureComponent {
@@ -25,22 +26,11 @@ class Login extends PureComponent {
     });
   }
 
-  // handleSubmit = async event => {
-  //   try {
-  //     event.preventDefault();
-
-  //     const test = await Auth.signIn(this.state.email, this.state.password);
-  //     alert('Logged in');
-  //   }
-  //   catch (e) {
-  //     alert(e.message);
-  //   }
-  // }
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     const {
       state: {
         email,
-        password
+        password,
       },
       props: {
         login,
@@ -58,9 +48,11 @@ class Login extends PureComponent {
   }
 
   render() {
-    const { authenticated, error } = this.props;
-    if (error) debugger;
-    if (authenticated) debugger;
+    const {
+      authenticating,
+      error
+    } = this.props;
+
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
@@ -81,14 +73,17 @@ class Login extends PureComponent {
               type="password"
             />
           </FormGroup>
-          <Button
+          <LoaderButton
             block
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
+            isLoading={authenticating}
+            text="Login"
+            loadingText="Authenticating.."
           >
             Login
-          </Button>
+          </LoaderButton>
         </form>
       </div>
     );

@@ -2,6 +2,7 @@ import {
   USER_AUTHENTICATING,
   USER_AUTHENTICATED,
   USER_AUTHENTICATING_ERROR,
+  USER_LOGOUT_SUCCESS,
 } from './types';
 
 
@@ -20,6 +21,13 @@ function reducer(state = INITIAL_STATE, action) {
     case USER_AUTHENTICATING_ERROR:
       return {
         ...state, isAuthenticating: false, isAuthenticated: false, error: action.payload,
+      };
+    case USER_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isAuthenticating: false,
+        isAuthenticated: false,
+        error: '',
       };
     default:
       return state;
