@@ -1,42 +1,28 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
+import { Link } from 'react-router-dom';
 import {
   Button, FormGroup, FormControl, ControlLabel,
 } from 'react-bootstrap';
 import LoaderButton from '../LoaderButton';
 import './login.css';
 
-class Login extends PureComponent {
-  constructor(props) {
-    super(props);
+const Login = (props) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.state = {
-      email: '',
-      password: '',
+  const validateForm = () => email.length > 0 && password.length > 0;
+
+  const handleChange = (event) => {
+    const changeState = {
+      email: setEmail,
+      password: setPassword,
     };
-  }
+    changeState[event.target.id](event.target.value);
+  };
 
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
-  }
-
-  handleSubmit = (e) => {
-    const {
-      state: {
-        email,
-        password,
-      },
-      props: {
-        login,
-      },
-    } = this;
-
+  const handleSubmit = (e) => {
+    const { login } = props;
     e.preventDefault();
 
     const data = {
@@ -45,49 +31,48 @@ class Login extends PureComponent {
     };
 
     login(data);
-  }
+  };
 
-  render() {
-    const {
-      authenticating,
-      error
-    } = this.props;
+  const {
+    authenticating,
+    error,
+  } = props;
 
-    return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <LoaderButton
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-            isLoading={authenticating}
-            text="Login"
-            loadingText="Authenticating.."
-          >
-            Login
-          </LoaderButton>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Login">
+      <form onSubmit={handleSubmit}>
+        <FormGroup controlId="email" bsSize="large">
+          <ControlLabel>Email</ControlLabel>
+          <FormControl
+            autoFocus
+            type="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </FormGroup>
+        <FormGroup controlId="password" bsSize="large">
+          <ControlLabel>Password</ControlLabel>
+          <FormControl
+            value={password}
+            onChange={handleChange}
+            type="password"
+          />
+        </FormGroup>
+        <Link to="/login/reset">Forgot password?</Link>
+        <LoaderButton
+          block
+          bsSize="large"
+          disabled={!validateForm()}
+          type="submit"
+          isLoading={authenticating}
+          text="Login"
+          loadingText="Authenticating.."
+        >
+          Login
+        </LoaderButton>
+      </form>
+    </div>
+  );
+};
 
 export default Login;

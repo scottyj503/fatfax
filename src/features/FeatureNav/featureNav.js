@@ -13,7 +13,6 @@ const FeatureNav = (props) => {
 
   useEffect(() => {
     const { history, userIsAuthenticated } = props;
-    console.log('test');
     if (userIsAuthenticated) {
       history.push('/');
     } else {
